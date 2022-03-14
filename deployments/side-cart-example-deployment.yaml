@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: side-cart
+  namespace: default
+  labels:
+    app: side-cart
+spec:
+  selector:
+    matchLabels:
+      app: side-cart
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: side-cart
+    spec:
+      containers:
+        - name: simple-client
+          image: elavertu/simple-client:latest
+          ports:
+            - containerPort: 3000
+          imagePullPolicy: Always
+        - name: simple-server
+          image: elavertu/simple-server:latest
+          ports:
+            - containerPort: 5001
+          imagePullPolicy: Always

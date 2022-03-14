@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: simple-client-service
+spec:
+  type: NodePort
+  ports:
+    - port: 3000
+      targetPort: 3000
+      nodePort: 31000
+  selector:
+    app: simple-client
+    type: front-end

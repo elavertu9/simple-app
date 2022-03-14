@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-server
+  namespace: default
+  labels:
+    app: simple-server
+    type: back-end
+spec:
+  selector:
+    matchLabels:
+      app: simple-server
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: simple-server
+    spec:
+      containers:
+        - name: simple-server
+          image: elavertu/simple-server:latest
+          ports:
+            - containerPort: 5001
+              name: simple-server

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-client
+  namespace: default
+  labels:
+    app: simple-client
+    type: front-end
+spec:
+  selector:
+    matchLabels:
+      app: simple-client
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: simple-client
+    spec:
+      containers:
+        - name: simple-client
+          image: elavertu/simple-client:latest
+          ports:
+            - containerPort: 3000
+              name: simple-client
